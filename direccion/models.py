@@ -4,6 +4,7 @@ from django.db import models
 # Create your models here.
 
 # -------- Pais - Pcia - Ciudad -------------------
+
 class Pais(models.Model):
     nombrePais = models.CharField(max_length=60)
     class meta:
@@ -31,11 +32,11 @@ class Ciudad(models.Model):
         return self.nombreCiudad
 
 
-# --------- Tipos de cargo
+# --------- Tipos de cargo 
 
 class TipoCargo(models.Model):
     detalle = models.CharField(max_length=60)
-    class Meta:
+    class meta:
         verbose_name = "tipo de cargo"
         verbose_plural_name = "Tipos de cargos"
     def __str__(self):
@@ -54,20 +55,20 @@ class Persona(models.Model):
 
 class Alumno(models.Model):
     persona = models.ForeignKey(Persona, on_delete=models.PROTECT)
-    class Meta:
+    class meta:
         verbose_name = "Alumno"
         verbose_plural_name = "Alumnos"
 
 class Profesor(models.Model):
     persona = models.ForeignKey(Persona, on_delete=models.PROTECT)
     #asignatura = models.ForeignKey(asignatura, on_delete=models.PROTECT) # Crear asignatura
-    class Meta:
+    class meta:
         verbose_name = "Profesor"
         verbose_plural_name = "Profesores"
 
 class Auxiliar(models.Model):
     persona = models.ForeignKey(Persona, on_delete=models.PROTECT)
-    class Meta:
+    class meta:
         verbose_name = "Auxiliar"
         verbose_plural_name = "Auxiliares"
 
@@ -75,15 +76,72 @@ class Cargo(models.Model):
     persona = models.ForeignKey(Persona, on_delete=models.PROTECT)
     tipo = models.ForeignKey(TipoCargo, on_delete=models.PROTECT)
     turno = models.CharField(max_length=30)
-    class Meta:
+    class meta:
         verbose_name = "Cargo"
         verbose_plural_name = "Cargos"
 
 
-# -------------- Asignatura
+# --------------Carrera y tipo de carrera - Curso - Asignatura
+
+class TipoCarrera(models.Model):
+    detalle = models.CharField(max_length=60)
+    class meta:
+        verbose_name = "Tipo de carrera"
+        verbose_plural_name = "Tipos de carreras"
+
+class Carrera(models.Model):
+    tipo = models.ForeignKey(TipoCarrera, on_delete=models.PROTECT)
+    detalle = models.CharField(max_length=60)
+    class meta:
+        verbose_name = "Carrera"
+        verbose_plural_name = "Carreras"
+
+class Curso(models.Model):
+    angno = models.CharField(max_length=10)
+    detalle = models.CharField(max_length=60)
+    class meta:
+        verbose_name = "Curso"
+        verbose_plural_name = "Cursos"
+
 class Asignatura(models.Model):
     detalle = models.CharField(max_length=60)
     promocionable = models.BooleanField(default=False)
     matricula = models.ManyToManyField(Alumno)
-    #carrera
-    #curso
+    carrera = models.ForeignKey(Carrera, on_delete=models.PROTECT)
+    curso = models.ForeignKey(Curso, on_delete=models.PROTECT)
+    profesor = models.ForeignKey(Profesor, on_delete=models.PROTECT)
+    class meta:
+        verbose_name = "Asignatura"
+        verbose_plural_name = "Asignaturas"
+
+
+# -------------- Calificación - Tipo de calificación
+class TipoCalificacion(models.Model):
+    detalle = models.CharField(max_length=60)
+    class meta:
+        verbose_name = "Tipo de califición"
+        verbose_plural_name = "Tipos de calificacines"
+
+class Calificacion(models.Model):
+    tipo = models.ForeignKey(TipoCalificacion, on_delete=models.PROTECT)
+    Alumno = models.ForeignKey(Alumno, on_delete=models.PROTECT)
+    Asignatura = models.ForeignKey(Asignatura, on_delete=models.PROTECT)
+    nota = models.FloatField()
+    observacion = models.CharField(max_length=200)
+    class meta:
+        verbose_name = "Califición"
+        verbose_plural_name = "Calificaciones"
+
+
+# ----------- Situación de revista de los docentes
+
+class Situacion(models.Model):
+    detalle = models.CharField(max_length=60)
+    asignatura = models.ForeignKey(Asignatura, on_delete=models.PROTECT)
+    profesor = models.ForeignKey(Profesor, on_delete=models.PROTECT)
+    class meta:
+        verbose_name = "Tipo de cargo"
+        verbose_plural_name = "Tipos de cargos"
+    def __str__(self):
+        return self.detalle
+
