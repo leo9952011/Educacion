@@ -75,16 +75,25 @@ WSGI_APPLICATION = 'Educacion.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
+""" Configuracion para la base de datos de la escuela.
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME':'educacion',
-        'USER': 'root',
-        'PASSWORD': 'hola123',
-        'HOST': 'localhost',
+        'NAME':'TestDjango',
+        'USER': 'joaquin',
+        'PASSWORD': '1234hola',
+        'HOST': 'dbinstituto.cqoj6zn6jtay.us-east-1.rds.amazonaws.com',
         'PORT': 3306,
     }
 }
+"""
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
+
 
 
 # Password validation
