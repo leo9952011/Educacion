@@ -61,7 +61,6 @@ class Alumno(models.Model):
 
 class Profesor(models.Model):
     persona = models.ForeignKey(Persona, on_delete=models.PROTECT)
-    #asignatura = models.ForeignKey(asignatura, on_delete=models.PROTECT) # Crear asignatura
     class meta:
         verbose_name = "Profesor"
         verbose_plural_name = "Profesores"
@@ -73,6 +72,11 @@ class Auxiliar(models.Model):
         verbose_plural_name = "Auxiliares"
 
 class Cargo(models.Model):
+    options = [
+        (1, 'Mañana'),
+        (2, 'Tarde'),
+        (3, 'Noche')
+    ]
     persona = models.ForeignKey(Persona, on_delete=models.PROTECT)
     tipo = models.ForeignKey(TipoCargo, on_delete=models.PROTECT)
     turno = models.CharField(max_length=30)
@@ -116,16 +120,26 @@ class Asignatura(models.Model):
 
 
 # -------------- Calificación - Tipo de calificación
+"""
 class TipoCalificacion(models.Model):
     detalle = models.CharField(max_length=60)
     class meta:
         verbose_name = "Tipo de califición"
         verbose_plural_name = "Tipos de calificacines"
+"""
 
 class Calificacion(models.Model):
-    tipo = models.ForeignKey(TipoCalificacion, on_delete=models.PROTECT)
+    options = [
+        (1, 'Parcial'),
+        (2, 'Recuperatorio'),
+        (3, 'Globalizador'),
+        (4, 'Final'),
+        (4, 'Otro'),
+    ]
+    tipo = models.CharField(max_length=60, choices=options)
     Alumno = models.ForeignKey(Alumno, on_delete=models.PROTECT)
     Asignatura = models.ForeignKey(Asignatura, on_delete=models.PROTECT)
+    fecha = models.DateField(auto_created=True)
     nota = models.FloatField()
     observacion = models.CharField(max_length=200)
     class meta:
@@ -136,7 +150,12 @@ class Calificacion(models.Model):
 # ----------- Situación de revista de los docentes
 
 class Situacion(models.Model):
-    detalle = models.CharField(max_length=60)
+    options = [
+        (1, 'Titular'),
+        (2, 'Suplente'),
+        (3, 'Provisional')
+    ]
+    detalle = models.CharField(max_length=60, choices=options)
     asignatura = models.ForeignKey(Asignatura, on_delete=models.PROTECT)
     profesor = models.ForeignKey(Profesor, on_delete=models.PROTECT)
     class meta:
