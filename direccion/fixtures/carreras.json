@@ -1,0 +1,34 @@
+[
+    {
+      "model": "direccion.TipoCarrera",
+      "id": 1,  
+      "fields": {
+        "detalle": "Terceario"
+      }
+    },
+    {
+      "model": "direccion.TipoCarrera",
+      "id": 2,  
+      "fields": {
+        "detalle": "Tecnicatura"
+      }
+    },
+    {
+      "model": "direccion.TipoCarrera",
+      "id": 3,  
+      "fields": {
+        "detalle": "Licenciatura"
+      }
+    },
+
+
+    {
+      "model": "direccion.Carrera",
+      "id": 1,  
+      "fields": {
+        "tipo": 2,
+        "detalle": "Desarrollo de Software"
+      }
+    }
+  ]
+

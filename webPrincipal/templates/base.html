@@ -1,0 +1,38 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    {% block extraCss %} {% endblock %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+
+    <title>
+        {% block title %} {% endblock %}
+    </title>
+</head>
+<body>
+    <nav>
+        {% include 'head/menu.html' %}
+    </nav>    
+
+    <main>
+
+        {% block content %}
+            <!-- Contenido dinamico de la web-->
+        {% endblock %}
+
+    </main>
+
+    <footer>
+        {% include 'footer/footer.html' %}
+    </footer>
+
+    <script src="{% static 'js/index.js' %}" type="module"></script>
+    {% block extraJs %} {% endblock %}
+
+</body>
+</html>

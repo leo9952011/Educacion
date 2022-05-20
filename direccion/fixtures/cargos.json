@@ -1,0 +1,23 @@
+[
+    {
+      "model": "direccion.TipoCargo",
+      "id": 1,  
+      "fields": {
+        "detalle": "Director"
+      }
+    },
+    {
+      "model": "direccion.TipoCargo",
+      "id": 2,  
+      "fields": {
+        "detalle": "Secretario"
+      }
+    },
+    {
+      "model": "direccion.TipoCargo",
+      "id": 3,  
+      "fields": {
+        "detalle": "Preceptor"
+      }
+    }
+  ]

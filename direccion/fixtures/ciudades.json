@@ -1,0 +1,25 @@
+[
+    {
+      "model": "direccion.Pais",
+      "id": 1,  
+      "fields": {
+        "nombrePais": "Argentina"
+      }
+    },
+    {
+      "model": "direccion.Provincia",
+      "id": 1,
+      "fields": {
+        "nombreProvincia": "Buenos Aires",
+        "Pais": 1
+      }
+    },
+    {
+      "model": "direccion.Ciudad",
+      "id": 1,
+      "fields": {
+        "nombreCiudad": "Dolores",
+        "provincia": 1
+      }
+    }
+  ]
