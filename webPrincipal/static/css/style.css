@@ -1,5 +1,22 @@
-body {
-    background-color: blue;
-    color: #fff;
-    font-size: 24px;
+:root {
+    /* Theme ligh */
+    --bodyLighBg: rgb(168, 167, 167);
+    --lightBg: #fff;
+    --LightbgHover: rgb(143, 140, 140);
+    --inputBg:#ccc;
+
+    /* Theme Dark */
+    --bodyDarkBg: #151515;
+    --darkBg: #202020;
+    --darkBgHover: #404040;
+    --inputDarkBg:#151515;
 }
+
+
+body {
+    margin: 0;
+    background-color: var(--bodyDarkBg);
+    color: #fff;
+}
+
+

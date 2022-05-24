@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <ul>
+    {% for persona in object_list %}
+        <li>{{ persona.dni }} - {{ persona.nombrePersona }}</li>
+    {% empty %}
+        <li>No articles yet.</li>
+    {% endfor %}
+    </ul>
+    
+{% endblock %}

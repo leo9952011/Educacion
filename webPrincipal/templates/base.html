@@ -6,33 +6,135 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    {% block extraCss %} {% endblock %}
+    <!-- Hamburger menu -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/hamburgers/1.2.1/hamburgers.min.css" rel="stylesheet">
+
+    <!-- Framework Styles -->
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="{% static 'css/reset.css' %}">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/buttons.css' %}">
+    <link rel="stylesheet" href="{% static 'css/header.css' %}">
+    
+    <!-- Extra Styles -->
+    {% block extraStyles %}{% endblock %}
 
 
     <title>
         {% block title %} {% endblock %}
     </title>
 </head>
-<body>
-    <nav>
-        {% include 'head/menu.html' %}
-    </nav>    
+<body data-theme>
+        
 
-    <main>
+        <header data-theme>
+
+            <div class="logo-contain">
+                <!-- Boton de menu responsive -->
+                <button class="hamburger hamburger--collapse" type="button">
+                    <span class="hamburger-box">
+                    <span class="hamburger-inner"></span>
+                    </span>
+                </button>
+                <!-- fin boton menu responsive --> 
+
+                ¡Hola Jorgelino!
+
+            </div>
+
+            <div class="logo"></div>
+
+            <!-- <div class="search">
+                <input type="text" placeholder="Buscar">
+                <button>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                    </svg>
+                </button>
+            </div> -->
+
+            <div class="user">
+                
+                <div class="notif"> <!-- Boton de notificaciones -->
+                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-bell-fill" viewBox="0 0 16 16">
+                        <path id="campana" d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zm.995-14.901a1 1 0 1 0-1.99 0A5.002 5.002 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901z"/>
+                      </svg>
+                </div>
+
+                <div class="theme">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-brightness-high" viewBox="0 0 16 16">
+                        <path id="sun" d="M8 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm0 1a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0zm0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13zm8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5zM3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8zm10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0zm-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707zM4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"/>
+                      </svg>
+                </div>
+
+                <div class="perfil">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                        <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                        <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+                    </svg>
+                </div>
+                <style>
+                    .user {
+                        display: flex;
+                        flex-direction: row;
+                        gap: 10px;
+                        align-items: center;
+                    }
+                    .notif, .perfil, .theme {
+                        padding: 5px;
+                        cursor: pointer;
+                    }
+                    #campana {
+                        fill: #FFF;
+                    }
+                </style>
+            </div>
+
+
+            <nav class="menu" data-theme> <!-- menu oculto -->
+                <div class="header-menu">
+
+                    <!-- Boton de menu responsive dentro del menu -->
+                    <button class="hamburger hamburger--collapse" type="button">
+                        <span class="hamburger-box">
+                        <span class="hamburger-inner"></span>
+                        </span>
+                    </button>
+                    <!-- fin boton menu responsive -->
+        
+                    <div class="logo"></div>
+
+                </div>
+
+                <ul class="menu-items">
+                    <li><a href="{% url 'direccion:list' %}">Personas</a></li>
+                    <li><a href="{% url 'direccion:list' %}">Personas</a></li>
+                    <li><a href="{% url 'direccion:list' %}">Personas</a></li>
+                    <li><a href="{% url 'direccion:list' %}">Personas</a></li>
+                    <li><a href="{% url 'direccion:list' %}">Personas</a></li>
+                </ul>
+
+            </nav>
+
+        </header>
+        <main>
 
         {% block content %}
-            <!-- Contenido dinamico de la web-->
+            <!-- Contenido dinamico de la web. -->
         {% endblock %}
-
-    </main>
+        </main>
 
     <footer>
-        {% include 'footer/footer.html' %}
+        aca va el pie de pagina.
     </footer>
 
+    <!-- JS Files -->
     <script src="{% static 'js/index.js' %}" type="module"></script>
-    {% block extraJs %} {% endblock %}
 
+    <!-- Framework JS -->
+
+    <!-- Extra JS Files -->
+    {% block extraJS %}{% endblock %}
 </body>
 </html>
